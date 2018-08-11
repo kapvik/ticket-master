@@ -14,7 +14,7 @@ class CreateTicketsTable extends Migration
     public function up()
     {
         Schema::create('tickets', function (Blueprint $table) {
-            $table->increments('id')->autoIncrement();
+            $table->increments('id');
             $table->enum('type', ['free', 'standard', 'premium'])->nullable()->unique();
             $table->integer('cost')->nullable();
             $table->text('description')->nullable();
