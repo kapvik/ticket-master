@@ -15,4 +15,8 @@ class Event extends Model
     protected $fillable = [
     	'date', 'name'
     ];
+
+    public function guests() {
+    	return $this->hasMany('App\Guest');
+    }
 }

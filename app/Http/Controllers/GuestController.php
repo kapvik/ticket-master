@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Guest;
+use App\Http\Requests\GuestStoreRequest;
 use Illuminate\Http\Request;
+use App\Guest;
+use App\Ticket;
 
 class GuestController extends Controller
 {
@@ -24,18 +26,24 @@ class GuestController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\GuestStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GuestStoreRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        if ($data->fails()) {
+            Session::flash('error', $data->messages()->first());
+            return redirect()->back()->withInput();
+        }
+        return Guest::create($data);
     }
 
     /**
@@ -44,9 +52,10 @@ class GuestController extends Controller
      * @param  \App\Guest  $guest
      * @return \Illuminate\Http\Response
      */
-    public function show(Guest $guest)
+    public function show($id)
     {
-        //
+        $guest = Guest::find($id)->ticket()->get();
+        return $guest;
     }
 
     /**

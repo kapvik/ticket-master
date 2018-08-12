@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\Guest;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -45,9 +46,12 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show($id)
     {
-        //
+        // $event = Event::find($id)->guests;
+        $event = Guest::where('event_id', $id)->get();
+
+        return $event;
     }
 
     /**

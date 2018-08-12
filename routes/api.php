@@ -17,6 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('/events', 'EventController', ['execept' => ['edit', 'show', 'store']
+Route::resource('/events', 'EventController', ['execept' => ['edit', 'store']
 ]);
+
+Route::resource('/guests', 'GuestController');
 
