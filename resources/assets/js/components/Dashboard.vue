@@ -10,16 +10,16 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<th scope="row"> 01.05.18</th>
-					<th>Show</th>
+				<tr v-for="event in events" :key="event.id">
+					<th scope="row">{{ event.date }}</th>
+					<th>{{ event.name }}</th>
 					<th>
-						<router-link :to="{path: '/event/:id'}">
+						<router-link :to="`/event/${event.id}`">
 							<button class="btn btn-light">show</button>
 						</router-link>
 					</th>
 					<th>
-						<router-link :to="{path: '/event/:id/register'}">
+						<router-link :to="`/event/${event.id}/register`">
 							<button class="btn btn-info">sigh up</button>
 						</router-link>
 					</th>
@@ -29,7 +29,21 @@
 	</div>
 </template>
 <script>
+	import { mapActions } from 'vuex'
+
 	export default {
-		name: 'Dashboard'
+		name: 'Dashboard',
+		mounted() {
+			if(this.events.length) {
+				return
+			}
+
+			this.$store.dispatch('getEvents')
+		},
+		computed: {
+			events() {
+				return this.$store.getters.events
+			}
+		}
 	}
 </script>

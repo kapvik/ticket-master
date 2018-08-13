@@ -14004,7 +14004,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__routes__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_MainApp__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_MainApp___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_MainApp__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__store__ = __webpack_require__(63);
 __webpack_require__(14);
+
 
 
 
@@ -14014,6 +14016,8 @@ __webpack_require__(14);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */]);
 
+var store = new __WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */].Store(__WEBPACK_IMPORTED_MODULE_5__store__["a" /* StoreData */]);
+
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     routes: __WEBPACK_IMPORTED_MODULE_3__routes__["a" /* routes */],
     node: 'history'
@@ -14022,6 +14026,7 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     el: '#app',
     router: router,
+    store: store,
     components: {
         MainApp: __WEBPACK_IMPORTED_MODULE_4__components_MainApp___default.a
     }
@@ -50951,6 +50956,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(41);
 //
 //
 //
@@ -50982,8 +50988,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-	name: 'Dashboard'
+	name: 'Dashboard',
+	mounted: function mounted() {
+		if (this.events.length) {
+			return;
+		}
+
+		this.$store.dispatch('getEvents');
+	},
+
+	computed: {
+		events: function events() {
+			return this.$store.getters.events;
+		}
+	}
 });
 
 /***/ }),
@@ -50998,39 +51019,44 @@ var render = function() {
     _c("table", { staticClass: "table mt-3" }, [
       _vm._m(0),
       _vm._v(" "),
-      _c("tbody", [
-        _c("tr", [
-          _c("th", { attrs: { scope: "row" } }, [_vm._v(" 01.05.18")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("Show")]),
-          _vm._v(" "),
-          _c(
-            "th",
-            [
-              _c("router-link", { attrs: { to: { path: "/event/:id" } } }, [
-                _c("button", { staticClass: "btn btn-light" }, [_vm._v("show")])
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "th",
-            [
-              _c(
-                "router-link",
-                { attrs: { to: { path: "/event/:id/register" } } },
-                [
-                  _c("button", { staticClass: "btn btn-info" }, [
-                    _vm._v("sigh up")
+      _c(
+        "tbody",
+        _vm._l(_vm.events, function(event) {
+          return _c("tr", { key: event.id }, [
+            _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(event.date))]),
+            _vm._v(" "),
+            _c("th", [_vm._v(_vm._s(event.name))]),
+            _vm._v(" "),
+            _c(
+              "th",
+              [
+                _c("router-link", { attrs: { to: "/event/" + event.id } }, [
+                  _c("button", { staticClass: "btn btn-light" }, [
+                    _vm._v("show")
                   ])
-                ]
-              )
-            ],
-            1
-          )
-        ])
-      ])
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "th",
+              [
+                _c(
+                  "router-link",
+                  { attrs: { to: "/event/" + event.id + "/register" } },
+                  [
+                    _c("button", { staticClass: "btn btn-info" }, [
+                      _vm._v("sigh up")
+                    ])
+                  ]
+                )
+              ],
+              1
+            )
+          ])
+        })
+      )
     ])
   ])
 }
@@ -51725,6 +51751,84 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StoreData; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutations__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__actions__ = __webpack_require__(65);
+
+
+
+var state = {
+	title: 'Ticket Master',
+	events: []
+};
+
+var getters = {
+	events: function events(state) {
+		return state.events;
+	}
+};
+
+var StoreData = {
+	state: state,
+	mutations: __WEBPACK_IMPORTED_MODULE_0__mutations__["a" /* mutations */],
+	actions: __WEBPACK_IMPORTED_MODULE_1__actions__,
+	getters: getters
+};
+
+/***/ }),
+/* 64 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return mutations; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutations_types__ = __webpack_require__(66);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+
+
+var mutations = _defineProperty({}, __WEBPACK_IMPORTED_MODULE_0__mutations_types__["a" /* GET_EVENTS */], function (state, payload) {
+	var _state$events;
+
+	(_state$events = state.events).push.apply(_state$events, _toConsumableArray(payload));
+});
+
+/***/ }),
+/* 65 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getEvents", function() { return getEvents; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutations_types__ = __webpack_require__(66);
+
+
+var getEvents = function getEvents(_ref) {
+	var commit = _ref.commit;
+
+	axios.get('/api/events').then(function (response) {
+		return commit(__WEBPACK_IMPORTED_MODULE_0__mutations_types__["a" /* GET_EVENTS */], response.data);
+	});
+};
+
+/***/ }),
+/* 66 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GET_EVENTS; });
+var GET_EVENTS = 'GET_EVENTS';
 
 /***/ })
 /******/ ]);
