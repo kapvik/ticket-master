@@ -10481,10 +10481,3 @@ a.text-dark:focus {
   cursor: pointer;
 }
 
-input[type="radio"] {
-  position: absolute;
-  left: 0;
-  top: 0;
-  visibility: hidden;
-}
-

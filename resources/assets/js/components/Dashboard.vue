@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<table class="table mt-3 table-responsive">
+		<table class="table mt-3">
 			<thead class="thead-light">
 				<tr>
 					<th scope="col">Date</th>

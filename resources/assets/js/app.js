@@ -2,12 +2,14 @@ require('./bootstrap')
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
+import VeeValidate from 'vee-validate'
 import { routes } from './routes'
 import MainApp from './components/MainApp'
 import { StoreData } from './store'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
+Vue.use(VeeValidate)
 
 const store = new Vuex.Store(StoreData)
 

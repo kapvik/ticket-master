@@ -10,10 +10,10 @@ export const getTickets = ({ commit }) => {
 		.then(response => commit(types.GET_TICKETS, response.data))
 }
 
-// export const registerToEvents = ({ commit, ...data }) => {
-// 	axios.post('/api/guests', ...data)
-// 		.then(response => commit(types.REGISTER, response))
-// }
+export const registerToEvents = ({ commit}, data ) => {
+	axios.post('/api/guests', data)
+		.then(response => commit(types.REGISTER, response))
+}
 
 export const getEventGuests = ({ commit }, id) => {
 	axios.get(`/api/events/${id}`)
