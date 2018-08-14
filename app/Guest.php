@@ -11,7 +11,7 @@ class Guest extends Model
     ];
 
     public function ticket() {
-    	return $this->belongsTo('App\Ticket');
+    	return $this->hasOne('App\Ticket');
     }
 
     public function event() {

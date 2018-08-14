@@ -22,3 +22,4 @@ Route::resource('/events', 'EventController', ['execept' => ['edit', 'store']
 
 Route::resource('/guests', 'GuestController');
 
+Route::get('/tickets', 'TicketController@index');

@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<table class="table mt-3">
+		<table class="table mt-3 table-responsive">
 			<thead class="thead-light">
 				<tr>
 					<th scope="col">Date</th>
@@ -29,7 +29,6 @@
 	</div>
 </template>
 <script>
-	import { mapActions } from 'vuex'
 
 	export default {
 		name: 'Dashboard',

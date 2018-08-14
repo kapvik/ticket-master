@@ -16,7 +16,7 @@ class GuestController extends Controller
      */
     public function index()
     {
-        //
+        $guests = Guest::with('ticket')->get();
     }
 
     /**

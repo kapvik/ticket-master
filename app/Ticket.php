@@ -11,6 +11,6 @@ class Ticket extends Model
     ];
 
     public function guests() {
-    	return $this->hasMany('App\Guest');
+    	return $this->belongsToMany('App\Guest');
     }
 }
