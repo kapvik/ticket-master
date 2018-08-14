@@ -24,17 +24,11 @@ class GuestStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'bail|required|alpha',
-            'last_name' => 'bail|required|alpha',
-            'email' => 'bail|required|email',
-            'ticket_id' => 'bail|required|exists:tickets,id',
-            'event_id' => 'bail|required|exists:events,id'
-        ];
-    }
-
-    public function messages() {
-        return [
-            'first_name.required' => 'Please provide a first name.'
+            'first_name' => 'required|alpha',
+            'last_name' => 'required|alpha',
+            'email' => 'required|email',
+            'ticket_id' => 'required|exists:tickets,id',
+            'event_id' => 'required|exists:events,id'
         ];
     }
 

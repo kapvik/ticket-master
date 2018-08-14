@@ -5,7 +5,9 @@ const state = {
 	title: 'Ticket Master',
 	events: [],
 	tickets: [],
-	guests: []
+	guests: [],
+	register: [],
+	errors: []
 }
 
 const getters = {
@@ -19,6 +21,10 @@ const getters = {
 
 	guests(state) {
 		return state.guests
+	},
+
+	errors(state) {
+		return state.errors
 	}
 }
 

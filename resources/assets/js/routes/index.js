@@ -13,6 +13,7 @@ export const routes = [
 	},
 	{
 		path: '/event/:id/register',
-		component: Register
+		component: Register,
+		exact: true
 	}
 ]

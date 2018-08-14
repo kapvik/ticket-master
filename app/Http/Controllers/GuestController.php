@@ -37,13 +37,9 @@ class GuestController extends Controller
      */
     public function store(GuestStoreRequest $request)
     {
-        $data = $request->validated();
+        $validData = $request->validated();
 
-        if ($data->fails()) {
-            Session::flash('error', $data->messages()->first());
-            return redirect()->back()->withInput();
-        }
-        return Guest::create($data);
+        return Guest::create($validData);
     }
 
     /**

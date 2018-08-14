@@ -81,9 +81,23 @@
 					</small>
 				</div>
 			</div>
-			<div class=" card-deck col-md-10 col-sm-12 mx-auto mt-4">
-				<div v-for="ticket in tickets" :key="ticket.id" class="card text-center border-secondary">
-					<div class="card-header text-uppercase bg-secondary text-white">
+			<div class=" card-group card-deck col-md-10 col-sm-12 mx-auto mt-4">
+				<label 
+					v-for="ticket in tickets"
+					:key="ticket.id"
+					:for="ticket.type"
+					class="card text-center border-secondary"
+				>
+					<input
+						:id="ticket.type"
+						type="radio"
+						name="ticket"
+						:value="ticket.id"
+						v-model="form.ticket_id"
+						v-validate.disable="'required'"
+						:class="{'border-danger': errors.has('ticket_id') }"
+					>
+					<div class="card-header text-uppercase bg-secondary">
 						{{ ticket.type }}
 					</div>
 					<div class="card-body">
@@ -92,15 +106,7 @@
 					<div class="card-footer text-info">
 						${{ ticket.cost }}
 					</div>
-					<input
-						type="radio"
-						name="ticket"
-						:value="ticket.id"
-						v-model="form.ticket_id"
-						v-validate.disable="'required'"
-						:class="{'border-danger': errors.has('ticket_id') }"
-					>
-				</div>
+				</label>
 			</div>
 			<div class="row d-flex justify-content-center mt-4 px-4">
 				<input
@@ -131,11 +137,10 @@
 				}
 		}),
 		mounted() {
-			if(this.events.length || this.tickets.length) {
+			this.$store.dispatch('getTickets')
+			if(this.events.length) {
 				return
 			}
-
-			this.$store.dispatch('getTickets')
 			this.$store.dispatch('getEvents')
 		},
 		computed: {
@@ -147,6 +152,9 @@
 			},
 			disabledBtn: function() {
 				return this.form.first_name != "" && this.form.last_name != "" && this.form.email != "" && this.form.ticket != "" && this.form.event != ""
+			},
+			errors() {
+				return this.$store.getters.errors
 			}
 		},
 		methods: {

@@ -19,9 +19,24 @@
 	}
 }
 
-// input[type="radio"] {
-// 	position: absolute;
-// 	left: 0;
-// 	top: 0;
-// 	visibility: hidden;
-// }
+input[type="radio"] {
+	position: absolute;
+	left: 0;
+	top: 0;
+	visibility: hidden;
+}
+
+.card-header {
+	color: $white;
+}
+
+input[type="radio"]:checked + .card-header {
+	label & {
+		background-color: $info !important;
+	}
+}
+
+
+label {
+	margin-bottom: 0;
+}

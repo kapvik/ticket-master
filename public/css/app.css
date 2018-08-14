@@ -10481,3 +10481,22 @@ a.text-dark:focus {
   cursor: pointer;
 }
 
+input[type="radio"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+}
+
+.card-header {
+  color: #fff;
+}
+
+label input[type="radio"]:checked + .card-header {
+  background-color: #17a2b8 !important;
+}
+
+label {
+  margin-bottom: 0;
+}
+
