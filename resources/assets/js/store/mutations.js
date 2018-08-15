@@ -14,6 +14,6 @@ export const mutations = {
 		state.errors.push(...payload)
 	},
 	[types.GET_GUESTS](state, payload) {
-		state.guests.push(...payload)
+		state.guests.push(...payload.guests)
 	}
 }

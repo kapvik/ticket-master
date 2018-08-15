@@ -9,6 +9,7 @@
 					<th scope="col">Ticket type</th>
 					<th scope="col">Cost</th>
 					<th scope="col">Privilegies</th>
+					<th scope="col">Price</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -19,6 +20,7 @@
 					<th>Free</th>
 					<th>$100</th>
 					<th>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum nobis eligendi harum laudantium quod, corrupti velit quidem dignissimos commodi deserunt error excepturi eos voluptate repellat, sed facere, quos adipisci non!</th>
+					<th>{{ guest.ticket.cost }}</th>
 				</tr>
 			</tbody>
 		</table>
