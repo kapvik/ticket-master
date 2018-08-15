@@ -17,6 +17,6 @@ class Event extends Model
     ];
 
     public function guests() {
-    	return $this->hasMany('App\Guest');
+    	return $this->hasMany('App\Guest')->with('ticket');
     }
 }

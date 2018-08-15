@@ -49,7 +49,7 @@ class EventController extends Controller
     public function show($id)
     {
         // $event = Event::find($id)->guests;
-        $event = Guest::where('event_id', $id)->get();
+        $event = Event::find($id)->with('guests')->first();
 
         return $event;
     }

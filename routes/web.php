@@ -14,3 +14,9 @@
 Route::get('/', function() {
     return view('welcome');
 });
+
+
+// Default rule to make vue-routes work on page reload
+Route::get('/{vue_capture?}', function () {
+    return view('welcome');
+})->where('vue_capture', '[\/\w\.-]*');
