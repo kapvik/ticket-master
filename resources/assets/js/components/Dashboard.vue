@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<table class="table mt-3">
+		<table class="table mt-3 table-responsive-sm">
 			<thead class="thead-light">
 				<tr>
 					<th scope="col">Date</th>
@@ -11,7 +11,7 @@
 			</thead>
 			<tbody>
 				<tr v-for="event in events" :key="event.id">
-					<th scope="row">{{ event.date }}</th>
+					<th scope="row">{{ event.date | moment("Do [of] MMMM [at] kk:mm") }}</th>
 					<th>{{ event.name }}</th>
 					<th>
 						<router-link :to="`/event/${event.id}`">

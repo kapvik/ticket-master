@@ -35,11 +35,8 @@ class GuestController extends Controller
      * @param  App\Http\Requests\GuestStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(GuestStoreRequest $request)
-    {
-        $validData = $request->validated();
-
-        return Guest::create($validData);
+    public function store(GuestStoreRequest $request) {
+        return Guest::create($request->all());
     }
 
     /**

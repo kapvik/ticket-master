@@ -1,26 +1,24 @@
 <template>
 	<div class="container">
-		<table class="table mt-3">
+		<table class="table mt-3 table-responsive">
 			<thead class="thead-light">
 				<tr>
-					<th scope="col">Sign up at</th>
+					<th scope="col">Sign up</th>
 					<th scope="col">Email</th>
 					<th scope="col">Guest name</th>
 					<th scope="col">Ticket type</th>
 					<th scope="col">Cost</th>
 					<th scope="col">Privilegies</th>
-					<th scope="col">Price</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr v-for="guest in guests" :key="guest.id">
-					<th scope="row">{{ guest.created_at }}</th>
+					<th scope="row">{{ guest.created_at | moment("Do [of] MMMM [at] kk:mm") }}</th>
 					<th>{{ guest.email }}</th>
 					<th>{{ guest.first_name }} {{ guest.last_name }}</th>
-					<th>Free</th>
-					<th>$100</th>
-					<th>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum nobis eligendi harum laudantium quod, corrupti velit quidem dignissimos commodi deserunt error excepturi eos voluptate repellat, sed facere, quos adipisci non!</th>
-					<th>{{ guest.ticket.cost }}</th>
+					<th class="text-capitalize">{{ guest.ticket.type }}</th>
+					<th>${{ guest.ticket.cost }}</th>
+					<th>{{ guest.ticket.description }}</th>
 				</tr>
 			</tbody>
 		</table>

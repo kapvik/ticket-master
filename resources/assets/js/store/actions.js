@@ -12,10 +12,8 @@ export const getTickets = ({ commit }) => {
 
 export const registerToEvents = ({ commit }, data ) => {
 	axios.post('/api/guests', data)
-		.then(response => commit(types.REGISTER_SUCCESS, response))
-		.catch(errors => {
-			commit(types.REGISTER_FAILED, response.data.errors)
-		})
+		.then(response => commit(types.REGISTER_SUCCESS, response.data))
+		.catch(errors => commit(types.REGISTER_FAILED, response.data.errors))
 }
 
 export const getEventGuests = ({ commit }, id) => {

@@ -10500,3 +10500,7 @@ label {
   margin-bottom: 0;
 }
 
+.fa-angle-left {
+  cursor: pointer;
+}
+

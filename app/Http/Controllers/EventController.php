@@ -50,7 +50,6 @@ class EventController extends Controller
     {
         // $event = Event::find($id)->guests;
         $event = Event::find($id)->with('guests')->first();
-
         return $event;
     }
 

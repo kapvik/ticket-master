@@ -7,34 +7,34 @@
 						type="name"
 						class="form-control"
 						id="firstName"
-						name="firstName"
+						name="firstname"
 						placeholder="First name"
 						v-model.trim="form.first_name"
 						v-validate.disable="'required|alpha_spaces|min:2'"
-						:class="{'border-danger': errors.has('first_name') }"
+						:class="{'border-danger': errors.has('firstname') }"
 					>
 					<small
 						class="form-text text-danger"
-						v-show="errors.has('first_name')"
+						v-show="errors.has('firstname')"
 					>
-						{{ errors.first('first_name') }}
+						{{ errors.first('firstname') }}
 					</small>
 				</div>
 				<div class="col-md-5 col-sm-12">
 					<input
 						type="name" 
 						class="form-control"
-						name="lastName"
+						name="lastname"
 						placeholder="Last name"
 						v-model.trim="form.last_name"
 						v-validate.disable="'required|alpha_spaces|min:2'"
-						:class="{'border-danger': errors.has('last_name') }"
+						:class="{'border-danger': errors.has('lastname') }"
 					>
 					<small
 						class="form-text text-danger"
-						v-show="errors.has('last_name')"
+						v-show="errors.has('lastname')"
 					>
-						{{ errors.first('last_name') }}
+						{{ errors.first('lastname') }}
 					</small>
 				</div>
 			</div>
@@ -60,8 +60,8 @@
 					<select
 						class="form-control"
 						name="event"
-						v-model="form.event_id"
 						v-validate.disable="'required'"
+						v-model="form.event_id"
 						:class="{'border-danger': errors.has('event') }"
 					>
 						<option 
@@ -81,7 +81,7 @@
 					</small>
 				</div>
 			</div>
-			<div class=" card-group card-deck col-md-10 col-sm-12 mx-auto mt-4">
+			<div class="card-deck col-md-10 col-sm-12 mx-auto mt-4">
 				<label 
 					v-for="ticket in tickets"
 					:key="ticket.id"
@@ -136,7 +136,13 @@
 					event_id: ''
 				}
 		}),
+		created() {
+			this.form.event_id = +this.$route.params.id
+		},
 		mounted() {
+			if(this.tickets.length) {
+				return
+			}
 			this.$store.dispatch('getTickets')
 			if(this.events.length) {
 				return
@@ -151,15 +157,13 @@
 				return this.$store.getters.tickets
 			},
 			disabledBtn: function() {
-				return this.form.first_name != "" && this.form.last_name != "" && this.form.email != "" && this.form.ticket != "" && this.form.event != ""
-			},
-			errors() {
-				return this.$store.getters.errors
+				return this.form.first_name != "" && this.form.last_name != "" && this.form.email != "" && this.form.ticket_id != "" && this.form.event_id != ""
 			}
 		},
 		methods: {
 			register(data) {
 			 this.$store.dispatch('registerToEvents', data)
+			 	.then(() => {if(!this.$store.state.errors.length) this.$router.push('/')})
 			},
 			validate() {
 				this.$validator.validateAll()

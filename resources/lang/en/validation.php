@@ -125,9 +125,27 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'first_name' => [
+            'required' => 'The :attribute field is required.',
+            'alpha'    => 'The :attribute may only contain letters.'
         ],
+        'last_name' => [
+            'required' => 'The :attribute field is required.',
+            'alpha'    => 'The :attribute may only contain letters.'
+        ],
+        'email' => [
+            'required' => 'The :attribute field is required.',
+            'email'    => 'The :attribute must be a valid email address.',
+            'unique'   => 'The :attribute has already been taken.'
+        ],
+        'ticket_id' => [
+            'required' => 'The :attribute field is required.',
+            'exists'   => 'The selected ticket is invalid.',
+        ],
+        'event_id' => [
+            'required' => 'The :attribute field is required.',
+            'exists'   => 'The selected event is invalid.',
+        ]
     ],
 
     /*
